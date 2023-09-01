@@ -38,6 +38,7 @@ while running:
 
     if not game_over:
         keys = pygame.key.get_pressed()
+        # Move Pac-Man
         if keys[pygame.K_LEFT]:
             pacman_x -= 5
         if keys[pygame.K_RIGHT]:
@@ -46,6 +47,10 @@ while running:
             pacman_y -= 5
         if keys[pygame.K_DOWN]:
             pacman_y += 5
+
+        # Boundary checks to prevent Pac-Man from crossing the borders
+        pacman_x = max(0, min(pacman_x, width - 32))
+        pacman_y = max(0, min(pacman_y, height - 32))
 
         # Check for collisions with ghosts
         for i, ghost_pos in enumerate(ghost_positions):
